@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# $1: the name of the target file that needs to be tested
+42spec() {
+  local  tests = $(ls tests/\*.c)
+  tests = printf 'tests/%q' "${tests[@]}"
+
+  if [[ tests ]]
+  then
+    cp -v $TEMPLATE/42proj/spec.Makefile Makefile &&
+    sed -i "" "s/!TEST=/TEST=$tests/g" Makefile &&
+    echo -e $GREEN"Added test files to Makefile."$WHITE
+  else
+    echo -e $RED"FAILED adding test files to Makefile."$WHITE
+  fi
+  if [[ -f $2 ]]
+  then
+    sed -i "" "s/!TARGET=/TARGET=$1/g" Makefile &&
+    echo -e $GREEN"Added evaluation target file to Makefile."$WHITE &&
+    make re &&
+    ./test.out
+  else
+    echo -e $RED"FAILED adding evaluation target file to Makefile."$WHITE
+  fi
+}
+
+42testers() {
+  echo -e $BLUE'avaliable testers installed:'$WHITE
+  echo -e $BLUE$(ls $TESTERS)$WHITE
+}

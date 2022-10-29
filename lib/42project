@@ -1,0 +1,19 @@
+#!/bin/bash
+
+42project(){
+  if [[ ! -f $1 ]]
+  then
+    mkdir -v $1 $1/src $1/spec $1/spec/tests
+    
+    cp -v $TEMPLATE/42proj/src.Makefile $1/src/Makefile
+    git init $1/src &&
+    cp -v $TEMPLATE/42proj/src._gitignore $1/src/.gitignore
+    mkdir $1/src/.vscode &&
+    cp -v $TEMPLATE/42proj/src.launch.json $1/src/.vscode/launch.json
+
+    cp -v $TEMPLATE/42proj/spec.Makefile $1/spec/Makefile
+    cp -v $TEMPLATE/42proj/spec.main.c $1/spec/main.c
+  else
+    echo "Folder $1 exist. Please input another name or remove the existing folder first."
+  fi
+}

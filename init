@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source $HOME/Utils/global
+
+for f in $HOME/Utils/lib/*; do
+  if [[ -f "$f" ]] ; then
+    source $f &&
+    echo -e $GREEN"sourced $f"$WHITE
+  fi
+done
