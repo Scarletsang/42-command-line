@@ -20,6 +20,13 @@
     # Adding Makefile and copying own testsuit to the spec directory
     cp -v $TEMPLATE/42proj/spec.Makefile $1/spec/Makefile
     cp -v $TEMPLATE/42proj/spec.main.c $1/spec/main.c
+    ln -s $OWN_TESTER/lib $1/spec/testsuit
+
+    # TODO: Add cbmc bound model checker tests to the spec directory
+
+    echo $GREEN"Finished initiating a project folder."$WHITE
+    echo $BLUE"Entering project folder..."$WHITE
+    code $1
   else
     echo $GREEN"Folder $1 exist. Opening into folder $1."$WHITE
     code $1
