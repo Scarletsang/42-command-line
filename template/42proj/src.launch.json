@@ -4,7 +4,7 @@
       {
           "name": "Launch",
           "type": "cppdbg",
-          "program": "${workspaceFolder}/<executable Name>",
+          "program": "${workspaceFolder}/spec/debug.out",
           "args": [],
           "cwd": "${workspaceFolder}",
           "request": "launch",

@@ -19,6 +19,3 @@ fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
-
-debug : FLAGS += -g
-debug : all

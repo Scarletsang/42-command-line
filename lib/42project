@@ -1,19 +1,27 @@
 #!/bin/bash
 
-42project(){
+# Creates a new project folder structure
+42project() {
   if [[ ! -f $1 ]]
   then
-    mkdir -v $1 $1/src $1/spec $1/spec/tests
-    
+    echo $GREEN"Creating folder $1..."$BLUE
+    # Creating the entire project file structure
+    mkdir -v $1 $1/src $1/spec $1/spec/tests $1/spec/cbmc_tests
+
+    # Adding VScode debugger to workspace 
+    mkdir $1/.vscode &&
+    cp -v $TEMPLATE/42proj/src.launch.json $1/.vscode/launch.json
+
+    # Adding Makefile and initiating git inside src directory
     cp -v $TEMPLATE/42proj/src.Makefile $1/src/Makefile
     git init $1/src &&
     cp -v $TEMPLATE/42proj/src._gitignore $1/src/.gitignore
-    mkdir $1/src/.vscode &&
-    cp -v $TEMPLATE/42proj/src.launch.json $1/src/.vscode/launch.json
 
+    # Adding Makefile and copying own testsuit to the spec directory
     cp -v $TEMPLATE/42proj/spec.Makefile $1/spec/Makefile
     cp -v $TEMPLATE/42proj/spec.main.c $1/spec/main.c
   else
-    echo "Folder $1 exist. Please input another name or remove the existing folder first."
+    echo $GREEN"Folder $1 exist. Opening into folder $1."$WHITE
+    code $1
   fi
 }

@@ -19,3 +19,6 @@ fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
+
+debug : ${TESTS}
+  ${CC} -g main.c ${TESTS} ${TARGET} -o debug.out

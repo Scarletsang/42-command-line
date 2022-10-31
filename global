@@ -1,7 +1,9 @@
 #!/bin/bash
 
-TEMPLATE=/Users/htsang/Utils/template
-TESTERS=/Users/htsang/Testers
+WORKSPACE42=$HOME/Documents
+TEMPLATE=$HOME/Utils/template
+TESTERS=$HOME/Testers
+OWN_TESTER=$TESTERS/c_testsuit
 
 GREEN='\033[0;32m'
 BLUE='\033[0;36m'
