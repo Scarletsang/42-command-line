@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source $HOME/Utils/global
+source $(dirname ${BASH_SOURCE:-$0})/global
 
-for f in $HOME/Utils/lib/*; do
+for f in $(dirname ${BASH_SOURCE:-$0})/lib/*; do
   if [[ -f "$f" ]] ; then
     source $f &&
     echo -e $GREEN"sourced $f"$WHITE

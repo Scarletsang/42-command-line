@@ -1,8 +1,12 @@
 #!/bin/bash
 
+# Fill in the directory name that contains all your 42 projects that you are working on
 WORKSPACE42=$HOME/Documents
-TEMPLATE=$HOME/Utils/template
+# Fill in the directory that contains all your testers
 TESTERS=$HOME/Testers
+
+# Do not touch these gobal variables
+TEMPLATE=$(dirname ${BASH_SOURCE:-$0})/template
 OWN_TESTER=$TESTERS/c_testsuit
 
 GREEN='\033[0;32m'
