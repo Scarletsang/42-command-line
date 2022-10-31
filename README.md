@@ -14,6 +14,14 @@ Then restart your terminal, you will see some bash script sourced to your curren
 
 Change the variables in the bash script called global.
 
+To be able to use `code <dirname>` to open folder in terminal, which 42project command uses it,
+run one of the following command depending on the terminal you are using:
+
+```sh
+echo "export PATH=$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin" >> ~/.zshrc
+echo "export PATH=$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin" >> ~/.bash_profile
+```
+
 ## Usage
 
 Avaliable commands:

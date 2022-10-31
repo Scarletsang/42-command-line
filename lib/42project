@@ -30,9 +30,8 @@
 
     echo $GREEN"Finished initiating a project folder."$WHITE
     echo $BLUE"Entering project folder..."$WHITE
-    code $1
   else
     echo $GREEN"Folder $1 exist. Opening into folder $1."$WHITE
-    code $1
   fi
+  code $1
 }
