@@ -1,5 +1,21 @@
 # A command line setup for my own 42 project setup
 
+## Install
+
+```sh
+git clone https://github.com/Scarletsang/42-command-line.git 42cli
+echo "source $(pwd)/42cli/init" >> ~/.zshrc
+echo "source $(pwd)/42cli/init" >> ~/.bash_profile
+```
+
+Then restart your terminal, you will see some bash script sourced to your current session.
+
+## Configure
+
+Change the variables in the bash script called global.
+
+## Usage
+
 Avaliable commands:
 
 42project <dirname>     Creates a new project directory with all corresponding testing tools and development tools.
