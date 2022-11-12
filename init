@@ -8,3 +8,7 @@ for f in $(dirname ${BASH_SOURCE:-$0})/lib/*; do
     echo -e $GREEN"sourced $f"$WHITE
   fi
 done
+
+setup-docker &&
+open-docker &&
+init-cbmc
