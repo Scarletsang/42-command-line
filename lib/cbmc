@@ -21,9 +21,9 @@ cbmc() {
 init-cbmc() {
   if [ ! "$(docker ps -q -f name=cbmc)" ]; then
     if [ "$(docker ps -aq -f status=exited -f name=cbmc)" ]; then
-      docker exec -itd -v $WORKSPACE42:/data --name=cbmc diffblue/cbmc:5.69.1
+      /usr/local/bin/docker start cbmc
     else
-      docker run -itd -v $WORKSPACE42:/data --name=cbmc diffblue/cbmc:5.69.1
+      /usr/local/bin/docker run -itd -v $WORKSPACE42:/data --name=cbmc diffblue/cbmc:5.69.1
     fi
     echo $GREEN"CBMC is starting up..."$WHITE
   fi
