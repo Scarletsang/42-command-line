@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Fill in the directory name that contains all your 42 projects that you are working on
-WORKSPACE42=$HOME/Documents
+export WORKSPACE42=$HOME/Documents
 # Fill in the directory that contains all your testers
-TESTERS=$HOME/Testers
+export TESTERS=$HOME/Testers
 
 # Do not touch these gobal variables
 TEMPLATE=$(dirname ${BASH_SOURCE:-$0})/template
