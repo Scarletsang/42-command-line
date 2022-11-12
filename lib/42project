@@ -5,21 +5,11 @@
   if [[ ! -f $1 ]]
   then
     echo $GREEN"Creating folder $1..."$BLUE
-    # Creating the entire project file structure
-    mkdir -v $1 $1/src $1/spec $1/spec/tests $1/spec/cbmc_tests
-
-    # Adding VScode debugger to workspace 
-    mkdir $1/.vscode &&
-    cp -v $TEMPLATE/42proj/src.launch.json $1/.vscode/launch.json
-
-    # Adding Makefile and initiating git inside src directory
-    cp -v $TEMPLATE/42proj/src.Makefile $1/src/Makefile
-    git init $1/src &&
-    cp -v $TEMPLATE/42proj/src._gitignore $1/src/.gitignore
+    # Copy the template to the current directory
+    cp -R $TEMPLATE/42project $1 &&
+    git init $1
 
     # Adding Makefile and copying own testsuit to the spec directory
-    cp -v $TEMPLATE/42proj/spec.Makefile $1/spec/Makefile
-    cp -v $TEMPLATE/42proj/spec.main.c $1/spec/main.c
     if [[ -f $OWN_TESTER ]]
     then
       git clone https://gitlab.com/scaletsang/c_testsuit.git $OWN_TESTER
