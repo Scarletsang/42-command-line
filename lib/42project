@@ -25,3 +25,11 @@
   fi
   code $1
 }
+
+work() {
+  cd $WORKSPACE42/$1/src
+}
+
+spec() {
+  cd $WORKSPACE42/$1/spec
+}
