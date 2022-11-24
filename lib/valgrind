@@ -1,0 +1,20 @@
+#!/bin/bash
+
+valgrind() {
+  local path=$(pwd | sed "s,$WORKSPACE42,,g")
+  echo $GREEN"Running CBMC static analyser..."$WHITE
+  /usr/local/bin/docker exec -it valgrind $0 "/data/$path/$1" ${@:2}
+}
+
+init-valgrind() {
+  if [ ! "$(docker ps -q -f name=valgrind)" ]; then
+    if [ "$(docker ps -aq -f status=exited -f name=valgrind)" ]; then
+      /usr/local/bin/docker start valgrind
+    else
+      /usr/local/bin/docker build -t valgrind $(dirname ${BASH_SOURCE:-$0}) &&
+      /usr/local/bin/docker run -itd -v $WORKSPACE42:/data --name=valgrind valgrind
+    fi
+    echo $GREEN"Valgrind is starting up..."$WHITE
+  fi
+  echo $GREEN"Valgrind is running in $WORKSPACE42"$WHITE
+}
