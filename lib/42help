@@ -7,10 +7,19 @@ Avaliable commands:
 42project <dirname>     Creates a new project directory with all corresponding testing tools and development tools.
 work <project_name>     Change directory to the project's src folder
 spec <project_name>     Change directory to the project's spec folder
+
+setup-docker            Delete the original docker location and move it to goinfre
+open-docker             Start up docker
+
+init-cbmc               Initiates a docker container to run CBMC bounded model checker
+cbmc                    Static analyzer for .c or GOTO-binary file
 goto-cc                 Compile project into GOTO-binaries
 goto-instrument         Write assertions for found bugs to GOTO-binaries (for testsuit generation)
-cbmc                    Static analyzer for .c or GOTO-binary file
-init-cbmc               Initiates a docker container to run CBMC bounded model checker
+
+init-valgrind           Initiates a docker container to run valgrind
+valgrind                Run valgrind directly
+valgrind-ssh            Enter the valgrind docker to compile code inside valgrind
+
 "$WHITE
 
 }

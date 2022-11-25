@@ -2,8 +2,14 @@
 
 valgrind() {
   local path=$(pwd | sed "s,$WORKSPACE42,,g")
-  echo $GREEN"Running CBMC static analyser..."$WHITE
-  /usr/local/bin/docker exec -it valgrind $0 "/data/$path/$1" ${@:2}
+  local cmd=$(echo "${@:1}" | /usr/bin/perl -0777 -pe "s,((?:-(?:\w|=)+\s)*\s)(\w+),\1/data$path/\2,s")
+  echo $GREEN"Running $cmd..."$WHITE
+  /usr/local/bin/docker exec -it valgrind /usr/bin/valgrind $cmd
+}
+
+valgrind-ssh() {
+  local path=$(pwd | sed "s,$WORKSPACE42,,g")
+  /usr/local/bin/docker exec -it valgrind bash -c "cd /data$path && bash"
 }
 
 init-valgrind() {
@@ -11,7 +17,7 @@ init-valgrind() {
     if [ "$(docker ps -aq -f status=exited -f name=valgrind)" ]; then
       /usr/local/bin/docker start valgrind
     else
-      /usr/local/bin/docker build -t valgrind $(dirname ${BASH_SOURCE:-$0}) &&
+      DOCKER_BUILDKIT=0 /usr/local/bin/docker build . -t valgrind -f $UTILS_DIR/lib/dependency/valgrindDockerfile &&
       /usr/local/bin/docker run -itd -v $WORKSPACE42:/data --name=valgrind valgrind
     fi
     echo $GREEN"Valgrind is starting up..."$WHITE

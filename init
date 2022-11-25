@@ -1,14 +1,14 @@
 #!/bin/bash
+UTILS_DIR=$(dirname ${BASH_SOURCE:-$0})
+source $UTILS_DIR/global
 
-source $(dirname ${BASH_SOURCE:-$0})/global
-
-for f in $(dirname ${BASH_SOURCE:-$0})/lib/*; do
+for f in $UTILS_DIR/lib/*; do
   if [[ -f "$f" ]] ; then
     source $f &&
     echo -e $GREEN"sourced $f"$WHITE
   fi
 done
 
-setup-docker &&
-open-docker &&
-init-cbmc
+# setup-docker &&
+# open-docker &&
+# init-cbmc
