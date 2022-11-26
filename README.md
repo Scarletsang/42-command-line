@@ -41,3 +41,9 @@ init-valgrind                  Initiates a docker container to run valgrind
 valgrind <valgrind_arguments>  Run valgrind directly
 valgrind-cli <comannds>        Execute any command inside docker container without entering it
 ```
+
+## TODO
+
+- dockerize push-swap visualizer
+- Creates a docker environment that can use brew and cmake
+- Notes to understand docker easily, it looks complicated only because the official site gives you ALL the things about docker, but to use it, you only need 1% of that documentation.
