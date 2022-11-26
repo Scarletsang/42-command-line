@@ -74,3 +74,7 @@ git checkout submit
 # Moves all the files inside src/ directory of the main branch to the submit branch
 git checkout main -- src
 ```
+
+## Resources
+
+[vscode debugger](https://haglobah.github.io/Mastering-42/core/vscode_debugger.html#Running%20the%20Debugger)

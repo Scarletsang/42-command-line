@@ -1,21 +1,21 @@
 #!/bin/bash
 
 goto-cc() {
-  local path=$(pwd | sed "s,$WORKSPACE42,,g")
+  local current_path=$(pwd | sed "s,$WORKSPACE42,,g")
   echo $GREEN"CBMC is compiling your code to into GOTO-binaries to verify your code."$WHITE
-  /usr/local/bin/docker exec -it cbmc $0 "/data/$path/$1" ${@:2}
+  /usr/local/bin/docker exec -it cbmc $0 "/data/$current_path/$1" ${@:2}
 }
 
 goto-instrument() {
-  local path=$(pwd | sed "s,$WORKSPACE42,,g")
+  local current_path=$(pwd | sed "s,$WORKSPACE42,,g")
   echo $GREEN"CBMC is transforming any found bugs into corresponding assertions, and are adding into the GOTO-binary."$WHITE
-  /usr/local/bin/docker exec -it cbmc $0 "/data/$path/$1" ${@:2}
+  /usr/local/bin/docker exec -it cbmc $0 "/data/$current_path/$1" ${@:2}
 }
 
 cbmc() {
-  local path=$(pwd | sed "s,$WORKSPACE42,,g")
+  local current_path=$(pwd | sed "s,$WORKSPACE42,,g")
   echo $GREEN"Running CBMC static analyser..."$WHITE
-  /usr/local/bin/docker exec -it cbmc $0 "/data/$path/$1" ${@:2}
+  /usr/local/bin/docker exec -it cbmc $0 "/data/$current_path/$1" ${@:2}
 }
 
 init-cbmc() {
