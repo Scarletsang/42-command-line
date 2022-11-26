@@ -8,6 +8,8 @@ Usage:
 
 valgrind <valgrind_arguments>  Run valgrind directly
 "$WHITE
+    return
+  fi
   local path=$(pwd | sed "s,$WORKSPACE42,,g")
   local cmd=$(echo "${@:1}" | /usr/bin/perl -0777 -pe "s,((?:-(?:\w|=)+\s)*\s)./(\w+),\1/data$path/\2,s")
   echo $GREEN"Running $cmd..."$WHITE
@@ -22,6 +24,8 @@ Usage:
 
 valgrind-cli <comannds>        Execute any command inside docker container without entering it
 "$WHITE
+    return
+  fi
   local path=$(pwd | sed "s,$WORKSPACE42,,g")
   /usr/local/bin/docker exec -it valgrind bash -c "cd /data$path && ${@:1}"
 }
