@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Fill in the directory name that contains all your 42 projects that you are working on
+WORKSPACE42=$HOME/Documents
+
+GREEN='\033[0;32m'
+BLUE='\033[0;36m'
+RED='\033[0;31m'
+WHITE='\033[0m'

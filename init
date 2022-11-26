@@ -1,14 +1,34 @@
 #!/bin/bash
-UTILS_DIR=$(dirname ${BASH_SOURCE:-$0})
-source $UTILS_DIR/global
+source $(dirname ${BASH_SOURCE:-$0})/toolbox/utils/global
+source $(dirname ${BASH_SOURCE:-$0})/toolbox/utils/docker
 
-for f in $UTILS_DIR/lib/*; do
+for f in $(dirname ${BASH_SOURCE:-$0})/toolbox/*/*.sh; do
   if [[ -f "$f" ]] ; then
     source $f &&
     echo -e $GREEN"sourced $f"$WHITE
   fi
 done
 
-# setup-docker &&
-# open-docker &&
-# init-cbmc
+42toolbox() {
+  echo -e $BLUE"
+Avaliable tools:
+
+42project <dirname>     Creates a new project directory with all corresponding testing tools and development tools.
+work <project_name>     Change directory to the project's src folder
+spec <project_name>     Change directory to the project's spec folder
+
+goinfre-docker          Delete the original docker location and move it to goinfre
+open-docker             Start up docker
+
+init-cbmc               Initiates a docker container to run CBMC bounded model checker
+cbmc <cbmc_arguments>   Static analyzer for .c or GOTO-binary file
+goto-cc                 Compile project into GOTO-binaries
+goto-instrument         Write assertions for found bugs to GOTO-binaries (for testsuit generation)
+
+init-valgrind                  Initiates a docker container to run valgrind
+valgrind <valgrind_arguments>  Run valgrind directly
+valgrind-cli <comannds>        Execute any command inside docker container without entering it
+
+"$WHITE
+
+}

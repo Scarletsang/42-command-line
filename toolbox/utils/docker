@@ -1,0 +1,44 @@
+#!/bin/bash
+
+open-docker() {
+  if [[ -z "$(! docker stats --no-stream 2> /dev/null)" ]]; then
+    printf $BLUE"starting up docker"
+    open -g -a Docker
+    while [[ -z "$(! docker stats --no-stream 2> /dev/null)" ]];
+      do printf "."
+      sleep 1
+    done
+    echo ""$WHITE
+  else
+    echo $BLUE"Docker is already running"$WHITE
+  fi
+}
+
+goinfre-docker() {
+  local docker_dest= /goinfre/$USER/docker
+  # Ask for docker reset if docker is found in goinfre
+  if [ -d "$docker_dest" ]; then
+    read -n1 -p $RED"Docker is already setup in $docker_dest, do you want to reset it? [y/N]"$WHITE input
+    echo ""
+    if [ -n "$input" ] && [ "$input" = "y" ]; then
+      rm -rf $docker_dest/{com.docker.{docker,helper},.docker} &>/dev/null ;:
+    fi
+  fi
+
+  # Unlinks all symlinks, if they are
+  unlink ~/Library/Containers/com.docker.docker &>/dev/null ;:
+  unlink ~/Library/Containers/com.docker.helper &>/dev/null ;:
+  unlink ~/.docker &>/dev/null ;:
+
+  # Delete directories if they were not symlinks
+  rm -rf ~/Library/Containers/com.docker.{docker,helper} ~/.docker &>/dev/null ;:
+
+  # Create destination directories in case they don't already exist
+  mkdir -p "$docker_dest"/{com.docker.{docker,helper},.docker}
+
+  # Make symlinks
+  ln -sf "$docker_dest"/com.docker.docker ~/Library/Containers/com.docker.docker
+  ln -sf "$docker_dest"/com.docker.helper ~/Library/Containers/com.docker.helper
+  ln -sf "$docker_dest"/.docker ~/.docker
+  echo $BLUE"docker is now set up in goinfre"$WHITE
+}

@@ -19,6 +19,7 @@ cbmc() {
 }
 
 init-cbmc() {
+  goinfre-docker && open-docker
   if [ ! "$(docker ps -q -f name=cbmc)" ]; then
     if [ "$(docker ps -aq -f status=exited -f name=cbmc)" ]; then
       /usr/local/bin/docker start cbmc
