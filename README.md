@@ -1,6 +1,6 @@
 # Dockerized 42 Toolbox!
 
-You need valgrind? You need some obscure static code analysier? A tester need cMake, a tools needs a packages that are too hectic to install on your 42 computer? Simply use docker and run the VM in the goinfre file!
+You need valgrind? You need some obscure static code analysier? A tester need cMake, a tool needs packages that are too hectic to install on your 42 computer? Simply use docker and run the VM in the goinfre file!
 
 This is a collection of bash scripts that initialize different tools in Docker, and it also comes with some utilies scripts that you can install if you like.
 
