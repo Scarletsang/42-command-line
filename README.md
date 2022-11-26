@@ -4,7 +4,7 @@ You need valgrind? You need some obscure static code analysier? A tester need cM
 
 This is a collection of bash scripts that initialize different tools in Docker, and it also comes with some utilies scripts that you can install if you like.
 
-**This repository is designed to be modular, click inside the toolbox directory, and choose a tool you are interested and just use it. Remember the folder utils inside the toolbox is the only dependencies for every tool that sparks your interest. Each tool has its own README to guide you through any installations.**
+**This repository is designed to be modular, click inside the toolbox directory, and choose a tool you are interested and just use it. Remember the folder utils inside the toolbox is a required dependency for every tool. But that's it. Each tool has its own README to guide you through any installations.**
 
 ## You want to install all the tools?
 
