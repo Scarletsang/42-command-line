@@ -1,4 +1,4 @@
-## Valgrind
+# **Valgrind**
 
 Valgrind is powerful to check memory leaks and other security issues. Using docker to run Valgrind resolves allows a clean environment to run valgrind in.
 

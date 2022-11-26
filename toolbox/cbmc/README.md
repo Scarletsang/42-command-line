@@ -1,4 +1,4 @@
-# CBMC Static model checker
+# **CBMC Static model checker**
 
 If you knows where the bug is, then you would have already know how to fix it, then how can you make tests to locate your bug in a logical way? You can't. I always think that unit test is necessary but also arbitary. I could not make a good test if I don't know where the bug is, but if I know where the bug is, why do I need to write tests?
 

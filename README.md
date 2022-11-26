@@ -22,6 +22,7 @@ Docker needs to mount be mount to a folder so that the tools can access your cod
 
 ## Usage
 
+```bash
 Avaliable commands:
 
 42project <dirname>     Creates a new project directory with all corresponding testing tools and development tools.
@@ -39,3 +40,4 @@ goto-instrument         Write assertions for found bugs to GOTO-binaries (for te
 init-valgrind                  Initiates a docker container to run valgrind
 valgrind <valgrind_arguments>  Run valgrind directly
 valgrind-cli <comannds>        Execute any command inside docker container without entering it
+```

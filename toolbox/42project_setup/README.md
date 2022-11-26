@@ -1,4 +1,4 @@
-# 42 Project directory
+# **42 Project directory**
 
 Have you ever felt that your development environment is clunky? Even a simple task as write tests for your own code requires a main.c, or even a seperate Makefile just for testing if you are lazy. So in the end you rely on pre-programmed testers that other students have written. Want to write a little bit more documentation of your code outside of the code, so that you can give your collaborators and your evaluator better understanding of your code? You can't because your project directory is your directory to submit.
 
