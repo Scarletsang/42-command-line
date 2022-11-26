@@ -15,10 +15,10 @@ open-docker() {
 }
 
 goinfre-docker() {
-  local docker_dest= /goinfre/$USER/docker
+  docker_dest="/goinfre/$USER/docker"
   # Ask for docker reset if docker is found in goinfre
   if [ -d "$docker_dest" ]; then
-    read -n1 -p $RED"Docker is already setup in $docker_dest, do you want to reset it? [y/N]"$WHITE input
+    read -n1 -p "${RED}Docker is already setup in $docker_dest, do you want to reset it? [y/N]${WHITE}" input
     echo ""
     if [ -n "$input" ] && [ "$input" = "y" ]; then
       rm -rf $docker_dest/{com.docker.{docker,helper},.docker} &>/dev/null ;:

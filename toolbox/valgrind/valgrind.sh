@@ -10,10 +10,10 @@ valgrind <valgrind_arguments>  Run valgrind directly
 "$WHITE
     return
   fi
-  local path=$(pwd | sed "s,$WORKSPACE42,,g")
-  local cmd=$(echo "${@:1}" | /usr/bin/perl -0777 -pe "s,((?:-(?:\w|=)+\s)*\s)./(\w+),\1/data$path/\2,s")
-  echo $GREEN"Running $cmd..."$WHITE
-  /usr/local/bin/docker exec -it valgrind /usr/bin/valgrind $cmd
+  local current_path=$(pwd | sed "s,$WORKSPACE42,,g")
+  local cmd=$(echo "${@:0}" | sed "s,\./,/data$current_path/,g")
+  echo $GREEN"Running valgrind $cmd..."$WHITE
+  /usr/local/bin/docker exec -it valgrind bash -c "$cmd"
 }
 
 valgrind-cli() {
@@ -26,8 +26,8 @@ valgrind-cli <comannds>        Execute any command inside docker container witho
 "$WHITE
     return
   fi
-  local path=$(pwd | sed "s,$WORKSPACE42,,g")
-  /usr/local/bin/docker exec -it valgrind bash -c "cd /data$path && ${@:1}"
+  local current_path=$(pwd | sed "s,$WORKSPACE42,,g")
+  /usr/local/bin/docker exec -it valgrind bash -c "cd /data$current_path && ${@:1}"
 }
 
 init-valgrind() {
@@ -36,7 +36,9 @@ init-valgrind() {
     if [ "$(docker ps -aq -f status=exited -f name=valgrind)" ]; then
       /usr/local/bin/docker start valgrind
     else
-      DOCKER_BUILDKIT=0 /usr/local/bin/docker build . -t valgrind -f $(dirname ${BASH_SOURCE:-$0})/valgrindDockerfile &&
+      local dockerfile=$(dirname "$(type $0 | awk '{ print $7 }')")/valgrindDockerfile
+      chmod 755 $dockerfile
+      /usr/local/bin/docker build . -t valgrind -f $dockerfile &&
       /usr/local/bin/docker run -itd -v $WORKSPACE42:/data --name=valgrind valgrind
     fi
     echo $GREEN"Valgrind is starting up..."$WHITE
