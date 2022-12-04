@@ -2,7 +2,7 @@
 
 # Creates a new project folder structure
 42project() {
-  if [ "$1" = "-h" ] || [ "$1" = "--help"]
+  if [ "$1" = "-h" ] || [ "$1" = "--help" ]
   then
     echo -e $BLUE"
 Usage:
@@ -15,7 +15,7 @@ Usage:
   then
     echo $GREEN"Creating folder $1..."$BLUE
     # Copy the template to the current directory
-    cp -R $(dirname ${BASH_SOURCE:-$0})/setup $1 &&
+    cp -R $(dirname "$(type $0 | awk '{ print $7 }')")/setup $1 &&
     git init $1
 
     # TODO: Add cbmc bound model checker tests to the spec directory
