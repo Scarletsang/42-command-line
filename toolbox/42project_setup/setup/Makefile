@@ -28,6 +28,10 @@ SRC:= $(MAIN_SRC)
 ######     Library files     #######
 ####################################
 
+# To compile a library, store a variable for their library file like this
+# and add a rule for it after the main rules:
+# LIBRARY_NAME=lib/LIBRARY_NAME/LIBRARY_NAME.a
+
 # To add a library, add the library header file like this:
 # INCLUDE_DIR+= lib/LIBRARY_NAME/include
 
@@ -56,6 +60,15 @@ $(NAME): $(OBJS)
 	@$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) && echo "Compilation of $(NAME) successful"
 
 bonus: re
+
+##########################################
+######     Library compilation     #######
+##########################################
+
+# To compile a library, add a rule like this:
+
+# $(LIBRARY_NAME):
+# 	@${MAKE} $(if $(FSANITIZE),FSANITIZE=yes,) -C lib/LIBRARY_NAME
 
 #########################################
 ######     Object compilation     #######
