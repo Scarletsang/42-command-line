@@ -33,7 +33,7 @@ SRC:= $(MAIN_SRC)
 # LIBRARY_NAME=lib/LIBRARY_NAME/LIBRARY_NAME.a
 
 # To add a library, add the library header file like this:
-# INCLUDE_DIR+= lib/LIBRARY_NAME/include
+# LIB_INCLUDE_DIR+= lib/LIBRARY_NAME/include
 
 # Then add the library to the linking process in one of the following ways:
 # LDFLAGS+= -Llib/LIBRARY_NAME -lLIBRARY_NAME
@@ -76,7 +76,7 @@ bonus: re
 
 .SECONDEXPANSION:
 $(OBJ_DIR)/%.o: $(SRC_DIR)/$$(subst @,/,$$*).c
-	@$(CC) $(CFLAGS) $(addprefix -iquote ,$(INCLUDE_DIR)) -c $< -o $@
+	@$(CC) $(CFLAGS) $(addprefix -iquote ,$(INCLUDE_DIR)) $(addprefix -I ,$(LIB_INCLUDE_DIR)) -c $< -o $@
 
 $(OBJ): $(OBJ_DIR)
 
