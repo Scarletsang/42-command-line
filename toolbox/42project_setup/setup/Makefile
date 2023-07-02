@@ -56,8 +56,8 @@ OBJ:=$(addprefix $(OBJ_DIR)/,$(subst /,@,$(SRC:.c=.o)))
 all:
 	@$(MAKE) $(NAME) -j
 
-$(NAME): $(OBJS)
-	@$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) && echo "Compilation of $(NAME) successful"
+$(NAME): $(OBJ)
+	@$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) && echo "Compilation of $(NAME) successful"
 
 bonus: re
 
@@ -83,12 +83,27 @@ $(OBJ): $(OBJ_DIR)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
+###############################################
+######     Pack objects for testing     #######
+###############################################
+
+pack: CFLAGS += -fPIC
+pack: LDFLAGS += -shared
+pack: $(LIBFT) $(OBJ)
+	@$(CC) $(OBJ) -o lib$(NAME).so $(LDFLAGS) && echo "Compilation of $(NAME).so successful"
+
+unpack:
+	@rm -f lib$(NAME).so
+
+repack: unpack clean
+	@$(MAKE) pack
+
 ###############################
 ######     Cleaning     #######
 ###############################
 
 clean: 
-	@rm -f $(OBJS)
+	@rm -f $(OBJ)
 
 fclean: clean
 	@rm -rf $(OBJ_DIR)
